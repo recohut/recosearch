@@ -1,0 +1,42 @@
+# Scenario configuration for the zero-infrastructure NovaShop example.
+#
+# Identity plus optional governance: access roles (RBAC) and field masking (ACL).
+# Every governance block is OPTIONAL — omit it and that control is simply off.
+
+scenario:
+  scenario_id: novashop_duckdb
+  name: NovaShop (zero-infra DuckDB example)
+  dataset_id: novashop_duckdb
+  mcp_name: recosearch-novashop
+
+# --- Access control (RBAC). The active role comes from RECOSEARCH_ROLE. ---
+# "*" grants every tool. Omit this block to open every tool to everyone.
+roles:
+  admin:
+    tools: ["*"]
+  analyst:
+    tools:
+      - list_sources
+      - get_semantic_contract
+      - execute_semantic_query
+      - execute_postgres_semantic_query
+      - run_guarded_sql
+      - run_guarded_postgres_sql
+      - combine_slices
+      - validate_analysis_request
+      - validate_cited_evidence_packet
+  viewer:
+    tools:
+      - list_sources
+      - get_semantic_contract
+      - validate_analysis_request
+      - validate_cited_evidence_packet
+
+# --- Field masking (ACL). sensitive_fields are masked for any role NOT listed
+# in unmasked_roles. Try a query selecting customer email as `analyst` vs
+# `admin` to see this in action. ---
+access:
+  sensitive_fields:
+    - novashop.customers.email
+  unmasked_roles: [admin]
+  mask: "***MASKED***"

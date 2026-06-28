@@ -1,0 +1,63 @@
+certifications:
+  - metric_id: metric:novashop:order_revenue
+    definition_hash: 0e66426cb4be77f6
+    golden_questions:
+      - term: order revenue
+        tenant: novashop
+        dimensions: []
+        expected:
+          metric_value: 109.97
+
+  - metric_id: metric:novashop:gross_revenue
+    definition_hash: b90cdf4922be272d
+    golden_questions:
+      - term: gross revenue
+        tenant: novashop
+        dimensions: []
+        expected:
+          metric_value: 109.97
+
+  - metric_id: metric:novashop:deferred_revenue
+    definition_hash: f9068d57b3c4ba04
+    golden_questions:
+      - term: deferred revenue
+        tenant: novashop
+        dimensions: []
+        expected:
+          metric_value: 49.99
+
+  - metric_id: metric:novashop:net_revenue
+    definition_hash: 4cf84cc8daa52024
+    golden_questions:
+      - term: net revenue
+        tenant: novashop
+        dimensions: []
+        expected:
+          metric_value: 104.97
+
+  - metric_id: metric:novashop:order_count
+    definition_hash: a0f41ce662164679
+    golden_questions:
+      - term: order count
+        tenant: novashop
+        dimensions: []
+        expected:
+          metric_value: 2
+
+  - metric_id: metric:novashop:unique_customers
+    definition_hash: 8e03bf60e562c5df
+    golden_questions:
+      - term: unique customers
+        tenant: novashop
+        dimensions: []
+        expected:
+          metric_value: 1
+
+  - metric_id: metric:novashop:revenue_per_customer
+    definition_hash: 158d2041ac974d4e
+    golden_questions:
+      - term: revenue per customer
+        tenant: novashop
+        dimensions: []
+        expected:
+          metric_value: 104.97

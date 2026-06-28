@@ -1,0 +1,20 @@
+entities:
+  - id: entity:novashop:product
+    source_id: novashop
+    table: products
+    primary_key: product_id
+    time_field: ""
+    external_ref: novashop.products
+
+relations:
+  - id: relation:novashop:order_product
+    from_entity_id: entity:novashop:order
+    to_entity_id: entity:novashop:product
+    join_key: product_id
+    cardinality: many_to_one
+
+dimensions:
+  - id: dimension:novashop:product_category
+    entity_id: entity:novashop:product
+    field: category
+    type: categorical

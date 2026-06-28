@@ -1,0 +1,9 @@
+scenario:
+  scenario_id: novashop
+  name: NovaShop
+  mcp_name: novashop
+
+roles:
+  analyst:
+    tools:
+      - structured_query

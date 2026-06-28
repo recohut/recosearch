@@ -1,0 +1,15 @@
+# Source connection configuration for the zero-infrastructure NovaShop example.
+#
+# This scenario uses a single DuckDB source: a local file, no server, no
+# credentials. Build it once with `python examples/novashop-duckdb/seed.py`
+# (which writes novashop.duckdb beside this file), then point the server here:
+#
+#   export RECOSEARCH_SEMANTIC_DIR=examples/novashop-duckdb
+#   recosearch --health-check
+#
+# The path is relative to this scenario directory.
+
+sources:
+  duckdb:
+    id: novashop
+    path: ./novashop.duckdb

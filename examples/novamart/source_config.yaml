@@ -1,0 +1,48 @@
+# Source connection configuration.
+#
+# Secrets must be provided via environment variables using ${VAR_NAME} syntax.
+# Copy .env.example to .env and fill in your values before starting the server.
+#
+# Non-secret fields (host, port, database, user, URLs) are safe to commit here.
+# Never put passwords, tokens, or account URLs directly in this file.
+
+sources:
+  postgres:
+    id: novamart_postgres
+    host: localhost
+    port: 15432
+    database: novamart
+    user: novamart
+    password: ${PG_PASSWORD}
+
+  opensearch:
+    id: novamart_opensearch
+    url: http://localhost:19200
+    index: customer_reviews
+
+  qdrant:
+    id: novamart_qdrant
+    url: http://localhost:16333
+    collection: novamart_policy_chunks
+
+  snowflake:
+    id: novamart_snowflake
+    url: ${SF_URL}
+    database: ${SF_DATABASE}
+    schema: ${SF_SCHEMA}
+    warehouse: ${SF_WAREHOUSE}
+    role: ${SF_ROLE}
+    user: ${SF_USER}
+    password: ${SF_PASSWORD}
+
+  mongodb:
+    id: novamart_mongodb
+    url: mongodb://localhost:27017
+    database: novamart
+    collection: seller_events
+    user: novamart
+    password: ${MONGO_PASSWORD}
+
+  duckdb:
+    id: novamart_duckdb
+    path: ./data/novamart_analytics.duckdb

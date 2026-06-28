@@ -1,0 +1,22 @@
+metrics:
+  - id: metric:novashop:order_revenue
+    display_name: order revenue
+    synonyms:
+      - revenue
+      - order income
+      - sales
+    collection_id: novashop_custom
+    measure_id: measure:novashop:total_amount
+    grain: order
+    filter_rules:
+      - active
+    allowed_dimension_ids:
+      - dimension:novashop:order_status
+      - dimension:novashop:product_category
+    external_ref: dbt://metrics/order_revenue
+    owners:
+      - team:novashop-analytics
+      - team:novashop-finance
+    version: "1.0.0"
+    status: certified
+    certification_tier: golden

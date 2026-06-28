@@ -1,0 +1,43 @@
+# Product-level role concept vocabulary (scenario-agnostic).
+#
+# Each role describes a BUSINESS CONCEPT, never a scenario column/table/source.
+# At runtime the resolver matches these `match_terms` against the scenario's
+# DECLARED field label/description/column (from semantic.md / the contract).
+#
+# Authoring discipline: use entity+concept-specific terms (e.g. "order status",
+# "units ordered"), not bare generic words ("amount", "status", "units"), so
+# distinct declared fields do not collide. Ambiguity is refused, never guessed.
+roles:
+  gross_amount:
+    kind: measure
+    concept: gross monetary / revenue amount of an order or line
+    match_terms: [revenue, gross, monetary, sales, turnover]
+    negative_terms: [rate, percentage, percent, ratio]
+  discount_amount:
+    kind: measure
+    concept: discount applied to an order or line
+    match_terms: [discount, markdown, rebate]
+    negative_terms: [rate, percentage, percent, ratio]
+  product_cost:
+    kind: measure
+    concept: product cost / cost of goods sold
+    match_terms: [cost, cogs, "cost of goods"]
+    negative_terms: [shipping, freight, handling, rate, percentage, percent]
+  order_quantity:
+    kind: measure
+    concept: number of units ordered
+    match_terms: ["units ordered", "order quantity", quantity, qty]
+    negative_terms: [price, amount, value, rate]
+  order_status:
+    kind: dimension
+    concept: order fulfillment state
+    match_terms: [fulfillment, "order status", "order state"]
+  order_identifier:
+    kind: dimension
+    concept: unique identifier of an order
+    match_terms: ["order id", "order identifier", "order number", "order key"]
+value_roles:
+  delivered_status: { match_terms: [delivered] }
+  returned_status: { match_terms: [returned] }
+  cancelled_status: { match_terms: [cancelled, canceled] }
+  pending_status: { match_terms: [pending] }

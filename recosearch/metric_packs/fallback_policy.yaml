@@ -1,0 +1,7 @@
+# Metric fallback policy (product/deployment config, NOT scenario input).
+# Default OFF: out of the box, fallback metric packs are not used; unknown
+# metrics clarify/refuse. Flipping a flag is a reviewed product decision.
+# Every fallback USE is stamped in provenance with this file's version+hash.
+version: "1.0"
+allow_global: false
+allow_industry: []

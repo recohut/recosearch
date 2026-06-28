@@ -1,0 +1,52 @@
+certifications:
+  - case_id: board_pack_revenue_only
+    pack_label: board_pack
+    expected_decision: answer
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-01"
+
+  - case_id: board_pack_with_deferred
+    pack_label: board_pack
+    expected_decision: review_required
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+      - term: deferred revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+
+  - case_id: board_pack_unknown_comparable_group
+    pack_label: board_pack
+    expected_decision: review_required
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: unregistered_group
+        time_period: "2026-01"
+
+  - case_id: board_pack_period_mismatch
+    pack_label: board_pack
+    expected_decision: review_required
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-01"
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-02"

@@ -1,0 +1,54 @@
+@prefix ns: <https://recosearch.example/ontology/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns:Revenue a owl:Class ;
+    rdfs:label "Revenue" .
+
+ns:GrossRevenue a owl:Class ;
+    rdfs:subClassOf ns:Revenue ;
+    rdfs:label "Gross revenue" .
+
+ns:NetRevenue a owl:Class ;
+    rdfs:subClassOf ns:Revenue ;
+    rdfs:label "Net revenue" .
+
+ns:DeferredRevenue a owl:Class ;
+    rdfs:subClassOf ns:Revenue ;
+    rdfs:label "Deferred revenue" .
+
+ns:GrossRevenue owl:disjointWith ns:NetRevenue .
+ns:DeferredRevenue owl:disjointWith ns:GrossRevenue .
+ns:DeferredRevenue owl:disjointWith ns:NetRevenue .
+
+ns:RevenueClaim a owl:Class ;
+    rdfs:label "Revenue claim" .
+
+ns:period a owl:DatatypeProperty ;
+    rdfs:domain ns:RevenueClaim ;
+    rdfs:range xsd:string .
+
+ns:refundTreatment a owl:DatatypeProperty ;
+    rdfs:domain ns:RevenueClaim ;
+    rdfs:range xsd:string .
+
+ns:recognitionStatus a owl:DatatypeProperty ;
+    rdfs:domain ns:RevenueClaim ;
+    rdfs:range xsd:string .
+
+ns:reportedAs a owl:ObjectProperty ;
+    rdfs:domain ns:RevenueClaim ;
+    rdfs:range ns:Revenue .
+
+ns:revenueType a owl:ObjectProperty ;
+    rdfs:domain ns:RevenueClaim ;
+    rdfs:range ns:Revenue .
+
+ns:termRef a owl:DatatypeProperty ;
+    rdfs:domain ns:RevenueClaim ;
+    rdfs:range xsd:string .
+
+ns:metricRef a owl:DatatypeProperty ;
+    rdfs:domain ns:RevenueClaim ;
+    rdfs:range xsd:string .

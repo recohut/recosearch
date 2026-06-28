@@ -1,0 +1,72 @@
+terms:
+  - id: term:novashop:revenue
+    display_name: revenue
+    definition: Total order revenue for Novashop — sum of order amounts for active orders.
+    aliases:
+      - sales
+      - order income
+    collection_id: novashop_custom
+    primary_refs:
+      - metric:novashop:order_revenue
+      - entity:novashop:order
+      - novashop
+
+  - id: term:novashop:gross_revenue
+    display_name: gross revenue
+    definition: Gross sales before refunds — total order amount for active orders.
+    aliases:
+      - gross sales
+    collection_id: novashop_custom
+    primary_refs:
+      - metric:novashop:gross_revenue
+      - entity:novashop:order
+
+  - id: term:novashop:net_revenue
+    display_name: net revenue
+    definition: Net sales after refunds — gross revenue minus refund amounts.
+    aliases:
+      - net sales
+    collection_id: novashop_custom
+    primary_refs:
+      - metric:novashop:net_revenue
+      - metric:novashop:gross_revenue
+
+  - id: term:novashop:deferred_revenue
+    display_name: deferred revenue
+    definition: Revenue collected but not yet recognized — cash received before service delivery.
+    aliases:
+      - unearned revenue
+      - deferred sales
+    collection_id: novashop_custom
+    primary_refs:
+      - metric:novashop:deferred_revenue
+      - entity:novashop:order
+
+  - id: term:novashop:customer
+    display_name: customer
+    definition: A Novashop customer who places orders.
+    aliases:
+      - buyer
+      - shopper
+    collection_id: novashop_custom
+    primary_refs:
+      - entity:novashop:customer
+      - novashop
+
+  - id: term:novashop:order
+    display_name: order
+    definition: A purchase transaction in the Novashop shop.
+    aliases:
+      - purchase
+      - transaction
+    collection_id: novashop_custom
+    primary_refs:
+      - entity:novashop:order
+      - novashop
+
+  - id: term:global:revenue
+    display_name: revenue
+    definition: Generic retail revenue — fallback when tenant-specific revenue is unavailable.
+    collection_id: global
+    primary_refs:
+      - metric:global:revenue

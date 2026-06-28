@@ -1,0 +1,151 @@
+certifications:
+  - case_id: decision_replay_clean
+    pack_label: board_pack
+    expected_pack_decision: answer
+    expected_replay_drift: false
+    actor: controller
+    decision_payload:
+      action: approve_board_pack
+    expected_outcome:
+      status: recognized
+      period: "2026-Q1"
+      amount: 1000.0
+    actual_outcome:
+      status: recognized
+      period: "2026-Q1"
+      amount: 1000.0
+    outcome_due_date: "2026-04-15"
+    expected_calibration_delta: match
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-01"
+
+  - case_id: decision_replay_contract_drift
+    pack_label: board_pack
+    expected_pack_decision: answer
+    expected_replay_drift: true
+    replay_target_contract_hash: stale000000000001
+    actor: controller
+    decision_payload:
+      action: approve_board_pack
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-01"
+
+  - case_id: decision_replay_policy_drift
+    pack_label: board_pack
+    expected_pack_decision: answer
+    expected_replay_drift: true
+    simulate_policy_drift: true
+    actor: controller
+    decision_payload:
+      action: approve_board_pack
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-01"
+
+  - case_id: decision_calibration_match
+    pack_label: board_pack
+    expected_pack_decision: answer
+    expected_replay_drift: false
+    actor: controller
+    decision_payload:
+      action: defer_revenue_recognition
+    expected_outcome:
+      status: recognized
+      period: "2026-Q2"
+      amount: 500.0
+    actual_outcome:
+      status: recognized
+      period: "2026-Q2"
+      amount: 500.0
+    outcome_due_date: "2026-07-01"
+    expected_calibration_delta: match
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        time_period: "2026-01"
+
+  - case_id: decision_calibration_miss
+    pack_label: board_pack
+    expected_pack_decision: answer
+    expected_replay_drift: false
+    actor: controller
+    decision_payload:
+      action: defer_revenue_recognition
+    expected_outcome:
+      status: recognized
+      period: "2026-Q2"
+      amount: 500.0
+    actual_outcome:
+      status: deferred
+      period: "2026-Q3"
+      amount: 600.0
+    outcome_due_date: "2026-07-01"
+    expected_calibration_delta: miss
+    expected_proposal_emitted: true
+    expected_aggregate_min_n: 1
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        time_period: "2026-01"
+
+  - case_id: decision_calibration_match_no_proposal
+    pack_label: board_pack
+    expected_pack_decision: answer
+    expected_replay_drift: false
+    actor: controller
+    decision_payload:
+      action: approve_board_pack
+    expected_outcome:
+      status: recognized
+      period: "2026-Q1"
+      amount: 1000.0
+    actual_outcome:
+      status: recognized
+      period: "2026-Q1"
+      amount: 1000.0
+    outcome_due_date: "2026-04-15"
+    expected_calibration_delta: match
+    expected_proposal_emitted: false
+    expected_aggregate_min_n: 1
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-01"
+
+  - case_id: decision_counterfactual_flip
+    pack_label: board_pack
+    expected_pack_decision: answer
+    expected_replay_drift: false
+    counterfactual_scenario: raise_tier_bar_to_local_live
+    expected_counterfactual_changed: true
+    actor: controller
+    decision_payload:
+      action: approve_board_pack
+    subclaims:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        reference_date: "2026-01-31"
+        comparable_group: january_close_totals
+        time_period: "2026-01"

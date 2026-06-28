@@ -1,0 +1,29 @@
+version: 1
+
+default:
+  decision: answer
+  reason_code: POLICY_DEFAULT_ALLOW
+  reason: No deny policy rule matched.
+
+rules:
+  - id: deny_guest_revenue_metrics
+    effect: deny
+    reason_code: POLICY_METRIC_ACCESS_DENIED
+    reason: Guest actors cannot query revenue metrics.
+    match:
+      actor_roles:
+        - guest
+      metric_ids:
+        - "metric:*:revenue"
+        - "metric:*:order_revenue"
+  - id: deny_guest_structured_query_novashop
+    effect: deny
+    reason_code: POLICY_ROLE_SOURCE_OPERATION_DENIED
+    reason: Guest actors cannot run structured queries on novashop.
+    match:
+      actor_roles:
+        - guest
+      source_ids:
+        - novashop
+      operations:
+        - structured_query

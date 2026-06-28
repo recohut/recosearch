@@ -1,0 +1,48 @@
+certifications:
+  - term_id: term:novashop:revenue
+    definition_hash: d3c1219144664a20
+    policy_hash: 39fc4112815ff4a5
+    golden_questions:
+      - term: revenue
+        tenant: novashop
+        actor_role: analyst
+        expected_decision: answer
+        expected_trust_status: usable_with_caveats
+        expected_evidence_tier: 2
+        expected:
+          metric_value: 109.97
+
+  - term_id: term:novashop:customer
+    definition_hash: 06cfad38cfe590e4
+    policy_hash: 39fc4112815ff4a5
+    golden_questions:
+      - term: customer
+        tenant: novashop
+        actor_role: analyst
+        expected_decision: clarify
+        expected_trust_status: trusted
+        expected_evidence_tier: 1
+
+  - term_id: term:novashop:gross_revenue
+    definition_hash: a058d5925006cf15
+    policy_hash: 39fc4112815ff4a5
+    golden_questions:
+      - term: gross revenue
+        tenant: novashop
+        actor_role: analyst
+        expected_decision: answer
+        expected_trust_status: usable_with_caveats
+        expected_evidence_tier: 2
+
+  - term_id: term:novashop:deferred_revenue
+    definition_hash: 6f98c8f11decef0d
+    policy_hash: 39fc4112815ff4a5
+    golden_questions:
+      - term: deferred revenue
+        tenant: novashop
+        actor_role: analyst
+        expected_decision: answer
+        expected_trust_status: usable_with_caveats
+        expected_evidence_tier: 2
+        expected:
+          metric_value: 49.99

@@ -1,0 +1,14 @@
+product_id,product_name,category,brand,list_price,listing_status
+NS-001,Aurora Wireless Earbuds,Electronics,Aurora,129.0,active
+NS-002,Aurora Noise-Cancel Headset,Electronics,Aurora,249.0,active
+NS-003,Volt 65W USB-C Charger,Electronics,Volt,39.0,active
+NS-004,Volt Power Bank 20000mAh,Electronics,Volt,59.0,active
+NS-005,Hearth Ceramic Cookware Set,Home & Kitchen,Hearth,189.0,active
+NS-006,Hearth Pour-Over Coffee Kit,Home & Kitchen,Hearth,44.0,active
+NS-007,Hearth Cast-Iron Skillet,Home & Kitchen,Hearth,69.0,active
+NS-008,Lumen Daily Vitamin C Serum,Beauty,Lumen,32.0,active
+NS-009,Lumen Hydrating Day Cream,Beauty,Lumen,28.0,active
+NS-010,Stride Trail Running Shoes,Sports,Stride,140.0,active
+NS-011,Stride Compression Socks 3pk,Sports,Stride,24.0,active
+NS-012,Stride Insulated Bottle 1L,Sports,Stride,34.0,active
+NS-013,Generic Clip-On Phone Lens,Electronics,NoName,12.0,draft

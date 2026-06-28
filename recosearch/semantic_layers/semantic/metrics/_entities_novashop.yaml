@@ -1,0 +1,57 @@
+entities:
+  - id: entity:novashop:order
+    source_id: novashop
+    table: orders
+    primary_key: order_id
+    time_field: order_date
+    external_ref: novashop.orders
+
+  - id: entity:novashop:customer
+    source_id: novashop
+    table: customers
+    primary_key: customer_id
+    time_field: ""
+    external_ref: novashop.customers
+
+measures:
+  - id: measure:novashop:total_amount
+    entity_id: entity:novashop:order
+    field: total_amount
+    aggregation: sum
+    external_ref: novashop.orders.total_amount
+
+  - id: measure:novashop:order_count
+    entity_id: entity:novashop:order
+    field: order_id
+    aggregation: count
+    external_ref: novashop.orders.order_id
+
+  - id: measure:novashop:refund_amount
+    entity_id: entity:novashop:order
+    field: refund_amount
+    aggregation: sum
+    external_ref: novashop.orders.refund_amount
+
+  - id: measure:novashop:unique_customer_count
+    entity_id: entity:novashop:order
+    field: customer_id
+    aggregation: count_distinct
+    external_ref: novashop.orders.customer_id
+
+dimensions:
+  - id: dimension:novashop:order_status
+    entity_id: entity:novashop:order
+    field: status
+    type: categorical
+
+  - id: dimension:novashop:customer_name
+    entity_id: entity:novashop:customer
+    field: customer_name
+    type: categorical
+
+relations:
+  - id: relation:novashop:order_customer
+    from_entity_id: entity:novashop:order
+    to_entity_id: entity:novashop:customer
+    join_key: customer_id
+    cardinality: many_to_one

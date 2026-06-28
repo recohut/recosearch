@@ -1,0 +1,8 @@
+metrics:
+  - id: metric:global:revenue
+    display_name: revenue
+    collection_id: global
+    measure_id: measure:novashop:total_amount
+    grain: transaction
+    filter_rules: []
+    allowed_dimension_ids: []

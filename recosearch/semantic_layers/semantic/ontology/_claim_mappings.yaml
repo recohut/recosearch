@@ -1,0 +1,15 @@
+version: 1
+namespace: https://recosearch.example/ontology/ns#
+mappings:
+  - term_id: term:novashop:revenue
+    revenue_type: Revenue
+    claim_class: RevenueClaim
+  - term_id: term:novashop:gross_revenue
+    revenue_type: GrossRevenue
+    claim_class: RevenueClaim
+  - term_id: term:novashop:net_revenue
+    revenue_type: NetRevenue
+    claim_class: RevenueClaim
+  - term_id: term:novashop:deferred_revenue
+    revenue_type: DeferredRevenue
+    claim_class: RevenueClaim

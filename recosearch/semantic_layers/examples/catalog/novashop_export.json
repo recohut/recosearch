@@ -1,0 +1,19 @@
+{
+  "entities": [
+    {
+      "urn": "urn:li:glossaryTerm:novashop:revenue",
+      "glossaryTerm": "term:novashop:revenue",
+      "owner": "data-team@novashop",
+      "related": [
+        "metric:novashop:order_revenue",
+        "entity:novashop:order",
+        "catalog:novashop:orders_table"
+      ]
+    },
+    {
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:duckdb,novashop.orders,PROD)",
+      "glossaryTerm": "term:novashop:order",
+      "related": ["entity:novashop:order"]
+    }
+  ]
+}

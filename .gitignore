@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Test & tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment / secrets (never commit real credentials)
+.env
+.env.*
+*.env
+!.env.example
+
+# Generated files (rebuild with: recosearch --write-semantic-json)
+semantic.json
+
+# Built sample databases (rebuild with the example's seed.py; CSVs are committed)
+*.duckdb
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~

@@ -1,0 +1,9 @@
+rule_definitions:
+  active:
+    filter:
+      status: delivered
+    description: Only count orders with status delivered
+  deferred:
+    filter:
+      status: pending
+    description: Orders pending delivery — revenue not yet recognized

@@ -1,0 +1,30 @@
+guidance:
+  - term_id: term:novashop:revenue
+    when_to_use: Use for Novashop order revenue questions; prefer certified metric:novashop:order_revenue.
+    when_to_clarify: Clarify if user means gross vs net revenue, or a different tenant.
+    when_to_refuse: Refuse if actor lacks access to novashop revenue metrics.
+
+  - term_id: term:novashop:gross_revenue
+    when_to_use: Use when user explicitly asks for gross or pre-refund sales.
+    when_to_clarify: Clarify if user may want net revenue instead.
+    when_to_refuse: Refuse if actor lacks novashop metric access.
+
+  - term_id: term:novashop:net_revenue
+    when_to_use: Use when user asks for net sales or revenue after refunds.
+    when_to_clarify: Clarify if user may want gross revenue instead.
+    when_to_refuse: Refuse if actor lacks novashop metric access.
+
+  - term_id: term:novashop:customer
+    when_to_use: Use for customer entity context; not directly executable — clarify metric intent.
+    when_to_clarify: Ask which customer metric (unique customers, revenue per customer) is needed.
+    when_to_refuse: Refuse if actor cannot access novashop source.
+
+  - term_id: term:novashop:order
+    when_to_use: Use for order entity context; pair with a metric for executable queries.
+    when_to_clarify: Ask which order metric (count, revenue) is needed.
+    when_to_refuse: Refuse if actor cannot access novashop source.
+
+  - term_id: term:global:revenue
+    when_to_use: Fallback revenue term when tenant-specific revenue is unavailable.
+    when_to_clarify: Prefer tenant-specific revenue when tenant context is known.
+    when_to_refuse: Refuse if no applicable revenue metric resolves for the tenant.

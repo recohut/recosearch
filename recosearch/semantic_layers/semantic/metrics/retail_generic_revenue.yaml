@@ -1,0 +1,11 @@
+metrics:
+  - id: metric:retail:generic_revenue
+    display_name: revenue
+    synonyms:
+      - sales
+      - income
+    collection_id: retail_industry
+    measure_id: measure:novashop:total_amount
+    grain: transaction
+    filter_rules: []
+    allowed_dimension_ids: []

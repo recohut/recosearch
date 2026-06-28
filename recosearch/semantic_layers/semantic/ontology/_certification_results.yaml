@@ -1,0 +1,32 @@
+certification_results:
+- ontology_hash: onto-e7e03fb5a04cc281
+  reasoner_mode: none
+  certified: true
+  golden_passed: true
+  golden_cases:
+  - term_id: term:novashop:revenue
+    passed: true
+    expected_decision: valid
+    actual_decision: valid
+    expected_reason_code: ''
+    actual_reason_code: ''
+  - term_id: term:novashop:gross_revenue
+    passed: true
+    expected_decision: refuse
+    actual_decision: refuse
+    expected_reason_code: CONSTRAINT_VIOLATION
+    actual_reason_code: CONSTRAINT_VIOLATION
+  - term_id: term:novashop:deferred_revenue
+    passed: true
+    expected_decision: refuse
+    actual_decision: refuse
+    expected_reason_code: CONSTRAINT_VIOLATION
+    actual_reason_code: CONSTRAINT_VIOLATION
+  - term_id: term:novashop:net_revenue
+    passed: true
+    expected_decision: clarify
+    actual_decision: clarify
+    expected_reason_code: CONSTRAINT_CLARIFY
+    actual_reason_code: CONSTRAINT_CLARIFY
+  tool_version: 0.1.0
+  certified_at: '2026-06-27T20:37:34.420780+00:00'

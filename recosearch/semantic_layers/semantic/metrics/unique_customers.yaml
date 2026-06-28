@@ -1,0 +1,17 @@
+metrics:
+  - id: metric:novashop:unique_customers
+    display_name: unique customers
+    synonyms:
+      - customer count
+      - distinct customers
+    collection_id: novashop_custom
+    measure_id: measure:novashop:unique_customer_count
+    grain: order
+    filter_rules:
+      - active
+    allowed_dimension_ids:
+      - dimension:novashop:order_status
+      - dimension:novashop:product_category
+      - dimension:novashop:customer_name
+    version: "1.0.0"
+    status: certified

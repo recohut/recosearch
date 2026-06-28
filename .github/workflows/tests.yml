@@ -1,0 +1,44 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: pytest (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      # Light dependency set: every adapter driver is lazy-imported and the
+      # registry skips drivers it cannot import, so the non-live suite passes
+      # without the heavy qdrant/sentence-transformers/snowflake/opensearch
+      # stacks. (`.[all,dev]` also works but pulls torch — slow CI.)
+      - name: Install package (light extras + dev)
+        run: pip install -e ".[duckdb,postgres,mongodb,ontology,dev]"
+
+      # The breadth suite (conftest points at examples/novamart) needs a fresh
+      # semantic.json so the freshness checks pass.
+      - name: Write semantic.json for the breadth example
+        run: recosearch --write-semantic-json
+        env:
+          RECOSEARCH_SEMANTIC_DIR: examples/novamart
+
+      # Run the two suites separately (breadth gateway + depth semantic layers).
+      - name: Breadth gateway tests
+        run: pytest -q tests/unit tests/smoke tests/integration -m "not live"
+
+      - name: Depth semantic-layers tests
+        run: pytest -q tests/semantic_layers -m "not live"

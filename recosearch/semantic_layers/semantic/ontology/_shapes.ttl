@@ -1,0 +1,62 @@
+@prefix ns: <https://recosearch.example/ontology/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns:RevenueClaimShape a sh:NodeShape ;
+    sh:targetClass ns:RevenueClaim ;
+    sh:property [
+        sh:path ns:period ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "clarify:missing_period" ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [
+        sh:path ns:revenueType ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Violation ;
+    ] .
+
+ns:NetRefundTreatmentShape a sh:NodeShape ;
+    sh:targetClass ns:RevenueClaim ;
+    sh:sparql [
+        sh:message "clarify:missing_refund_treatment" ;
+        sh:severity sh:Warning ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this ns:revenueType ns:NetRevenue .
+                FILTER NOT EXISTS { $this ns:refundTreatment ?rt }
+            }
+        """ ;
+    ] .
+
+ns:GrossAsNetShape a sh:NodeShape ;
+    sh:targetClass ns:RevenueClaim ;
+    sh:sparql [
+        sh:message "violation:gross_reported_as_net" ;
+        sh:severity sh:Violation ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this ns:revenueType ns:GrossRevenue .
+                $this ns:reportedAs ns:NetRevenue .
+            }
+        """ ;
+    ] .
+
+ns:DeferredAsRecognizedNetShape a sh:NodeShape ;
+    sh:targetClass ns:RevenueClaim ;
+    sh:sparql [
+        sh:message "violation:deferred_as_recognized_net" ;
+        sh:severity sh:Violation ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this ns:revenueType ns:DeferredRevenue .
+                $this ns:recognitionStatus "recognized" .
+                $this ns:reportedAs ns:NetRevenue .
+            }
+        """ ;
+    ] .

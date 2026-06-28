@@ -1,0 +1,83 @@
+# Global metric pack (product-level fallback, tier = global).
+# Formulas are STRUCTURED DATA over abstract roles. They never reference scenario
+# field ids, source ids, table names, or column names.
+version: "1.0"
+tier: global
+metrics:
+  net_revenue:
+    label: net revenue
+    version: "1.0"
+    definition: Delivered order revenue after discounts.
+    formula:
+      type: difference
+      terms:
+        - { role: gross_amount, agg: sum, sign: "+" }
+        - { role: discount_amount, agg: sum, sign: "-" }
+    default_filters:
+      - { role: order_status, op: "=", value_role: delivered_status }
+
+  units_sold:
+    label: units sold
+    version: "1.0"
+    definition: Units sold on delivered order lines.
+    formula:
+      type: sum
+      terms:
+        - { role: order_quantity, agg: sum, sign: "+" }
+    default_filters:
+      - { role: order_status, op: "=", value_role: delivered_status }
+
+  gross_margin:
+    label: gross margin
+    version: "1.0"
+    definition: Net revenue minus product cost.
+    formula:
+      type: difference
+      terms:
+        - { role: gross_amount, agg: sum, sign: "+" }
+        - { role: discount_amount, agg: sum, sign: "-" }
+        - { role: product_cost, agg: sum, sign: "-" }
+    default_filters:
+      - { role: order_status, op: "=", value_role: delivered_status }
+
+  average_order_value:
+    label: average order value
+    version: "1.0"
+    definition: Net revenue divided by the number of delivered orders.
+    formula:
+      type: ratio
+      numerator:
+        terms:
+          - { role: gross_amount, agg: sum, sign: "+" }
+          - { role: discount_amount, agg: sum, sign: "-" }
+      denominator:
+        terms:
+          - { role: order_identifier, agg: count, sign: "+" }
+    default_filters:
+      - { role: order_status, op: "=", value_role: delivered_status }
+
+  return_rate:
+    label: return rate
+    version: "1.0"
+    definition: Share of orders that were returned.
+    formula:
+      type: ratio
+      numerator:
+        terms:
+          - { role: order_status, agg: count, sign: "+" }
+      denominator:
+        terms:
+          - { role: order_identifier, agg: count, sign: "+" }
+
+  cancellation_rate:
+    label: cancellation rate
+    version: "1.0"
+    definition: Share of orders that were cancelled.
+    formula:
+      type: ratio
+      numerator:
+        terms:
+          - { role: order_status, agg: count, sign: "+" }
+      denominator:
+        terms:
+          - { role: order_identifier, agg: count, sign: "+" }

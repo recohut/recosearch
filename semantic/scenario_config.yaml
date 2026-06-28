@@ -1,0 +1,44 @@
+# Scenario configuration (template).
+#
+# Holds the scenario IDENTITY plus optional GOVERNANCE: access roles (RBAC),
+# field masking (ACL), and interpretation vocabulary. Connections live in
+# source_config.yaml; business meaning lives in semantic.md.
+#
+# Every governance block is OPTIONAL — omit it and that control is off:
+#   - no `roles`        -> no access control (every tool open to everyone)
+#   - no `access`       -> no field masking
+#   - no `vocabularies` -> built-in domain-neutral defaults are used
+#
+# A complete, working example is in examples/novamart/scenario_config.yaml.
+
+scenario:
+  scenario_id: my_scenario
+  name: My Scenario
+  dataset_id: my_scenario
+  mcp_name: my-scenario
+
+# --- Access control (RBAC). OPTIONAL: omit -> every tool open to everyone. ---
+# The active role comes from the RECOSEARCH_ROLE env var. "*" grants every tool.
+# roles:
+#   admin:
+#     tools: ["*"]
+#   viewer:
+#     tools:
+#       - list_sources
+#       - get_semantic_contract
+#       - search_text
+#       - search_vector
+
+# --- Field masking (ACL). OPTIONAL: omit -> no masking. ---
+# sensitive_fields (source.table.column) are masked for any role not in unmasked_roles.
+# access:
+#   sensitive_fields:
+#     - my_source.my_table.my_sensitive_column
+#   unmasked_roles: [admin]
+#   mask: "***MASKED***"
+
+# --- Interpretation vocabulary. OPTIONAL: omit -> built-in defaults. ---
+# vocabularies:
+#   field_roles:
+#     body_text:
+#       terms: ["review text", "description"]

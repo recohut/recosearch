@@ -1,0 +1,13 @@
+metrics:
+  - id: metric:novashop:avg_order_value
+    display_name: average order value
+    synonyms:
+      - aov
+    collection_id: novashop_custom
+    kind: derived
+    formula: "measure:novashop:total_amount / measure:novashop:order_count"
+    grain: order
+    filter_rules:
+      - active
+    allowed_dimension_ids:
+      - dimension:novashop:order_status

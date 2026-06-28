@@ -1,0 +1,17 @@
+default_min_tier_label: local-equivalent
+
+evidence_tier_bars:
+  - pattern: board_pack
+    min_tier_label: local-equivalent
+  - pattern: finance_close
+    min_tier_label: local-equivalent
+
+review_triggers:
+  - pattern: term:novashop:deferred_revenue
+    required_role: controller
+  - pattern: "term:*:deferred_revenue"
+    required_role: controller
+
+comparable_groups:
+  - group_id: january_close_totals
+    description: Subclaims in this group must share grain and period to foot for board pack.

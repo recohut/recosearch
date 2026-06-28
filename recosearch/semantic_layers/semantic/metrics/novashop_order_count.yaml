@@ -1,0 +1,17 @@
+metrics:
+  - id: metric:novashop:order_count
+    display_name: order count
+    synonyms:
+      - orders
+      - number of orders
+    collection_id: novashop_custom
+    measure_id: measure:novashop:order_count
+    grain: order
+    filter_rules:
+      - active
+    allowed_dimension_ids:
+      - dimension:novashop:order_status
+      - dimension:novashop:product_category
+      - dimension:novashop:customer_name
+    version: "1.0.0"
+    status: certified

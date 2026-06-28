@@ -1,0 +1,11 @@
+# Ecommerce/marketplace industry pack (tier = ecommerce).
+# Demonstrates industry->global delegation: an industry pack may know a metric
+# name but inherit the formula from the global pack instead of duplicating it.
+version: "1.0"
+tier: ecommerce
+metrics:
+  net_revenue:
+    label: net revenue
+    version: "1.0"
+    definition: Marketplace net revenue (inherits the global formula).
+    delegates_to: global

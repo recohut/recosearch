@@ -1,0 +1,24 @@
+calibration_match_rules:
+  - field: status
+    match_mode: exact
+  - field: amount
+    match_mode: numeric_tolerance
+  - field: period
+    match_mode: exact
+
+partial_match_fields:
+  - amount
+
+advisory_target_rules:
+  - pattern: deferred*
+    target: term:novashop:deferred_revenue
+  - pattern: defer*
+    target: term:novashop:deferred_revenue
+  - pattern: revenue*
+    target: term:novashop:revenue
+
+confidence_method: wilson
+
+trust_prior_trigger:
+  min_n: 1
+  miss_rate_ci_low_threshold: 0.15

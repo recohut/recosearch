@@ -1,0 +1,64 @@
+# Scenario configuration — the single declared file a business owner edits.
+#
+# It holds the scenario IDENTITY plus optional GOVERNANCE: access roles (RBAC),
+# field masking (ACL), and interpretation vocabulary. Connections live in
+# source_config.yaml; business meaning lives in semantic.md.
+#
+# Every governance block is OPTIONAL — omit it and that control is simply off:
+#   - no `roles`        -> no access control (every tool open to everyone)
+#   - no `access`       -> no masking (no sensitivity control)
+#   - no `vocabularies` -> built-in domain-neutral defaults are used (never breaks)
+
+scenario:
+  scenario_id: novamart
+  name: NovaMart Semantic Contract
+  dataset_id: novamart
+  mcp_name: novamart
+
+# --- Access control (RBAC). OPTIONAL: omit -> every tool open to everyone. ---
+# The active role comes from the RECOSEARCH_ROLE env var. "*" grants every tool.
+roles:
+  admin:
+    tools: ["*"]
+  analyst:
+    tools:
+      - list_sources
+      - get_semantic_contract
+      - search_text
+      - search_vector
+      - run_guarded_sql
+      - run_guarded_postgres_sql
+      - execute_semantic_query
+      - execute_postgres_semantic_query
+      - combine_slices
+      - validate_analysis_request
+      - validate_cited_evidence_packet
+  viewer:
+    tools:
+      - list_sources
+      - get_semantic_contract
+      - search_text
+      - search_vector
+      - combine_slices
+      - validate_analysis_request
+      - validate_cited_evidence_packet
+
+# --- Field masking (ACL). OPTIONAL: omit -> no masking. ---
+# sensitive_fields (source.table.column) are masked for any role NOT in unmasked_roles.
+access:
+  sensitive_fields:
+    - novamart_opensearch.customer_reviews.customer_id
+    - novamart_snowflake.sellers.seller_name
+  unmasked_roles: [admin]
+  mask: "***MASKED***"
+
+# --- Interpretation vocabulary. OPTIONAL: omit -> built-in defaults. ---
+# Extends the domain-neutral defaults in recosearch/vocabularies.py.
+vocabularies:
+  field_roles:
+    body_text:
+      terms: ["review text", "policy text"]
+    score:
+      terms: ["stars"]
+  rule_stopwords:
+    filter: ["orders", "order", "sales", "revenue", "analysis", "metrics", "metric"]

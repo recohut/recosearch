@@ -1,0 +1,14 @@
+metric_collections:
+  - id: novashop_custom
+    priority: 100
+    scope:
+      tenant: novashop
+
+  - id: retail_industry
+    priority: 50
+    scope:
+      industry: retail
+
+  - id: global
+    priority: 10
+    scope: {}

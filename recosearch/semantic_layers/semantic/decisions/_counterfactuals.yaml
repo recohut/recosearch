@@ -1,0 +1,12 @@
+scenarios:
+  raise_tier_bar_to_local_live:
+    label: raise_tier_bar_to_local_live
+    overlay:
+      evidence_gates:
+        evidence_tier_bars:
+          - pattern: board_pack
+            min_tier_label: customer-pilot-live
+  policy_tightened:
+    label: policy_tightened
+    overlay:
+      policy_hash: tightened-policy-hash0001

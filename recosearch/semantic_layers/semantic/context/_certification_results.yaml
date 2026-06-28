@@ -1,0 +1,45 @@
+certification_results:
+- term_id: term:novashop:customer
+  definition_hash: 06cfad38cfe590e4
+  policy_hash: 39fc4112815ff4a5
+  certified: true
+  golden_passed: true
+  evidence_tier: 2
+  run_at: '2026-06-27T20:37:30Z'
+  tool_version: 0.1.0
+  ares_confidence_interval:
+  - 1.0
+  - 1.0
+- term_id: term:novashop:deferred_revenue
+  definition_hash: 6f98c8f11decef0d
+  policy_hash: 39fc4112815ff4a5
+  certified: true
+  golden_passed: true
+  evidence_tier: 3
+  run_at: '2026-06-27T20:37:30Z'
+  tool_version: 0.1.0
+  ares_confidence_interval:
+  - 1.0
+  - 1.0
+- term_id: term:novashop:gross_revenue
+  definition_hash: a058d5925006cf15
+  policy_hash: 39fc4112815ff4a5
+  certified: true
+  golden_passed: true
+  evidence_tier: 3
+  run_at: '2026-06-27T20:37:30Z'
+  tool_version: 0.1.0
+  ares_confidence_interval:
+  - 1.0
+  - 1.0
+- term_id: term:novashop:revenue
+  definition_hash: d3c1219144664a20
+  policy_hash: 39fc4112815ff4a5
+  certified: true
+  golden_passed: true
+  evidence_tier: 3
+  run_at: '2026-06-27T20:37:30Z'
+  tool_version: 0.1.0
+  ares_confidence_interval:
+  - 1.0
+  - 1.0

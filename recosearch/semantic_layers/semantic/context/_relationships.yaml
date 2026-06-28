@@ -1,0 +1,36 @@
+relationships:
+  - from_id: term:novashop:revenue
+    to_id: term:novashop:gross_revenue
+    kind: related_term
+
+  - from_id: term:novashop:revenue
+    to_id: term:novashop:net_revenue
+    kind: related_term
+
+  - from_id: term:novashop:revenue
+    to_id: metric:novashop:order_revenue
+    kind: resolves_to
+
+  - from_id: term:novashop:gross_revenue
+    to_id: metric:novashop:gross_revenue
+    kind: resolves_to
+
+  - from_id: term:novashop:net_revenue
+    to_id: metric:novashop:net_revenue
+    kind: resolves_to
+
+  - from_id: term:novashop:revenue
+    to_id: entity:novashop:order
+    kind: grounded_in
+
+  - from_id: term:novashop:customer
+    to_id: entity:novashop:customer
+    kind: grounded_in
+
+  - from_id: term:novashop:order
+    to_id: entity:novashop:order
+    kind: grounded_in
+
+  - from_id: term:novashop:revenue
+    to_id: term:novashop:customer
+    kind: related_term

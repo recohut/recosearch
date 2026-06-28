@@ -1,0 +1,36 @@
+version: 1
+certifications:
+  - ontology_hash: placeholder
+    reasoner_mode: none
+    golden_cases:
+      - term_id: term:novashop:revenue
+        tenant: novashop
+        actor_role: analyst
+        claim_qualifiers:
+          - [period, "2026-01"]
+        expected_decision: valid
+      - term_id: term:novashop:gross_revenue
+        tenant: novashop
+        actor_role: analyst
+        claim_qualifiers:
+          - [reported_as, NetRevenue]
+          - [period, "2026-01"]
+        expected_decision: refuse
+        expected_reason_code: CONSTRAINT_VIOLATION
+      - term_id: term:novashop:deferred_revenue
+        tenant: novashop
+        actor_role: analyst
+        claim_qualifiers:
+          - [recognition_status, recognized]
+          - [reported_as, NetRevenue]
+          - [refund_treatment, after_refunds]
+          - [period, "2026-01"]
+        expected_decision: refuse
+        expected_reason_code: CONSTRAINT_VIOLATION
+      - term_id: term:novashop:net_revenue
+        tenant: novashop
+        actor_role: analyst
+        claim_qualifiers:
+          - [period, "2026-01"]
+        expected_decision: clarify
+        expected_reason_code: CONSTRAINT_CLARIFY

@@ -1,0 +1,18 @@
+sources:
+  novashop:
+    type: duckdb
+    id: novashop
+    mode: runtime
+    operations:
+      - structured_query
+    path: examples/novashop/shop.duckdb
+    source_role: local_fixture
+    grain: order_line
+    masking:
+      supported: false
+    cost_controls:
+      max_rows: 100
+      timeout_s: 30
+    freshness:
+      max_age_days: 365
+      hard_sla: false

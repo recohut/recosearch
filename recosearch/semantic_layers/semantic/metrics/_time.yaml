@@ -1,0 +1,14 @@
+time_spine:
+  timezone: UTC
+  min_grain: day
+  supported_grains:
+    - day
+    - week
+    - month
+  period_macros:
+    last_30_days:
+      days: 30
+    ytd:
+      start: year_start
+    prior_period:
+      relative_to: previous_period

@@ -1,0 +1,16 @@
+metrics:
+  - id: metric:novashop:gross_revenue
+    display_name: gross revenue
+    synonyms:
+      - gross sales
+    collection_id: novashop_custom
+    measure_id: measure:novashop:total_amount
+    grain: order
+    filter_rules:
+      - active
+    allowed_dimension_ids:
+      - dimension:novashop:order_status
+      - dimension:novashop:product_category
+      - dimension:novashop:customer_name
+    version: "1.0.0"
+    status: certified
