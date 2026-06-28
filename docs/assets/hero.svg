@@ -1,0 +1,76 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ttl dsc" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <title id="ttl">RecoSearch architecture</title>
+  <desc id="dsc">An MCP client LLM sends tool calls to RecoSearch, which governs execution with a semantic contract, RBAC, field masking and a read-only SQL guard, runs validated read-only queries against your data sources, and returns rows each carrying a citation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0c1424"/>
+      <stop offset="1" stop-color="#090f1c"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#102234"/>
+      <stop offset="1" stop-color="#0b1a29"/>
+    </linearGradient>
+    <marker id="ah" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+    <marker id="ahA" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <rect x="6" y="6" width="1188" height="548" rx="24" fill="url(#bg)" stroke="#1b2740"/>
+
+  <!-- header -->
+  <text x="48" y="60" font-size="14.5" letter-spacing="3.5" font-weight="700" fill="#34d399">GOVERNED · DETERMINISTIC · CITED</text>
+  <text x="46" y="98" font-size="27" font-weight="700" fill="#eef3fa">An LLM asks. <tspan fill="#34d399">RecoSearch governs.</tspan> Every row is cited.</text>
+
+  <!-- forward arrows -->
+  <line x1="284" y1="322" x2="340" y2="322" stroke="#34d399" stroke-width="2.4" marker-end="url(#ah)"/>
+  <text x="312" y="310" text-anchor="middle" font-size="12.5" fill="#9fb0c8">tool calls</text>
+  <line x1="816" y1="322" x2="872" y2="322" stroke="#34d399" stroke-width="2.4" marker-end="url(#ah)"/>
+  <text x="844" y="310" text-anchor="middle" font-size="12.5" fill="#9fb0c8">read-only query</text>
+
+  <!-- return lane -->
+  <path d="M1012 430 L1012 500 L188 500 L188 402" fill="none" stroke="#fbbf24" stroke-width="2.4" stroke-dasharray="2 0" marker-end="url(#ahA)"/>
+  <rect x="486" y="486" width="228" height="28" rx="14" fill="#1a1408" stroke="#5a4612"/>
+  <text x="600" y="504" text-anchor="middle" font-size="13" font-weight="600" fill="#fcd34d">rows + per-row _citation</text>
+
+  <!-- LEFT: MCP client -->
+  <rect x="56" y="236" width="228" height="168" rx="16" fill="url(#core)" stroke="#27405e"/>
+  <text x="170" y="270" text-anchor="middle" font-size="12" letter-spacing="2" font-weight="700" fill="#60a5fa">MCP CLIENT</text>
+  <text x="170" y="312" text-anchor="middle" font-size="30">🧠</text>
+  <text x="170" y="346" text-anchor="middle" font-size="15" font-weight="600" fill="#eef3fa">LLM decides WHAT to ask</text>
+  <text x="170" y="370" text-anchor="middle" font-size="12.5" fill="#93a4bd">Claude · Claude Code</text>
+  <text x="170" y="388" text-anchor="middle" font-size="12.5" fill="#93a4bd">any MCP app</text>
+
+  <!-- CENTER: RecoSearch governance -->
+  <rect x="340" y="172" width="476" height="300" rx="18" fill="url(#core)" stroke="#1f6f5c"/>
+  <text x="578" y="206" text-anchor="middle" font-size="19" font-weight="800" fill="#34d399">🔒 RecoSearch</text>
+  <text x="578" y="228" text-anchor="middle" font-size="12.5" fill="#9fb0c8">governs HOW it runs — no model loop in the server</text>
+
+  <rect x="366" y="248" width="424" height="58" rx="12" fill="#0e1f1a" stroke="#256b58"/>
+  <text x="388" y="274" font-size="14.5" font-weight="700" fill="#d1fae5">Semantic contract</text>
+  <text x="388" y="294" font-size="12" fill="#8fb6a9">declared sources · metrics · rules — the single source of truth</text>
+
+  <rect x="366" y="316" width="424" height="58" rx="12" fill="#0e1f1a" stroke="#256b58"/>
+  <text x="388" y="342" font-size="14.5" font-weight="700" fill="#d1fae5">RBAC · field masking · read-only SQL guard</text>
+  <text x="388" y="362" font-size="12" fill="#8fb6a9">mutating / undeclared / no-FROM SQL refused with a reason code</text>
+
+  <rect x="366" y="384" width="424" height="58" rx="12" fill="#0e1f1a" stroke="#256b58"/>
+  <text x="388" y="410" font-size="14.5" font-weight="700" fill="#d1fae5">Per-row citations · cite-or-refuse</text>
+  <text x="388" y="430" font-size="12" fill="#8fb6a9">client-invoked validator gates the answer on real evidence</text>
+
+  <!-- RIGHT: data sources -->
+  <rect x="872" y="212" width="272" height="220" rx="16" fill="url(#core)" stroke="#27405e"/>
+  <text x="1008" y="246" text-anchor="middle" font-size="12" letter-spacing="2" font-weight="700" fill="#f0abfc">YOUR DATA</text>
+  <g font-size="13" font-weight="600" fill="#dce6f3">
+    <rect x="894" y="262" width="110" height="42" rx="10" fill="#15233a" stroke="#2c3e59"/><text x="949" y="288" text-anchor="middle">Postgres</text>
+    <rect x="1012" y="262" width="110" height="42" rx="10" fill="#15233a" stroke="#2c3e59"/><text x="1067" y="288" text-anchor="middle">Snowflake</text>
+    <rect x="894" y="312" width="110" height="42" rx="10" fill="#15233a" stroke="#2c3e59"/><text x="949" y="338" text-anchor="middle">OpenSearch</text>
+    <rect x="1012" y="312" width="110" height="42" rx="10" fill="#15233a" stroke="#2c3e59"/><text x="1067" y="338" text-anchor="middle">Qdrant</text>
+    <rect x="894" y="362" width="110" height="42" rx="10" fill="#15233a" stroke="#2c3e59"/><text x="949" y="388" text-anchor="middle">MongoDB</text>
+    <rect x="1012" y="362" width="110" height="42" rx="10" fill="#15233a" stroke="#2c3e59"/><text x="1067" y="388" text-anchor="middle">DuckDB</text>
+  </g>
+
+  <text x="600" y="540" text-anchor="middle" font-size="12.5" fill="#6b7c95">Reasoning lives in the client · execution is governed in the server · Apache-2.0</text>
+</svg>

@@ -14,20 +14,9 @@ the external MCP client; RecoSearch only governs execution.
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)
 ![Status](https://img.shields.io/badge/status-v0.1-orange.svg)
 
-```mermaid
-flowchart LR
-    LLM["🧠 LLM (in your MCP client)<br/>decides WHAT to ask"]
-    subgraph RS["🔒 RecoSearch governs HOW it runs (deterministic)"]
-        direction TB
-        G["semantic contract +<br/>RBAC · masking · read-only SQL guard"]
-        C["citations on every row +<br/>client-invoked cite-or-refuse validator"]
-        G --> C
-    end
-    DATA[("📊 Your data")]
-    LLM -->|MCP tool calls| RS
-    RS -->|validated query| DATA
-    DATA -->|rows + _citation| LLM
-```
+<p align="center">
+  <img src="docs/assets/hero.svg" alt="RecoSearch architecture — an MCP client LLM sends tool calls to RecoSearch, which governs execution (semantic contract, RBAC, masking, read-only SQL guard) and returns validated rows each carrying a citation." width="920">
+</p>
 
 ## Two governed paths, one server
 
